@@ -316,17 +316,6 @@
 
       </div>
       <div class="vs__actions">
-        <!-- <button
-          v-show="showClearButton"
-          :disabled="disabled"
-          @click="clearSelection"
-          type="button"
-          class="clear"
-          title="Clear selection"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button> -->
-
         <span
           v-if="!noDrop"
           ref="openIndicator"
@@ -335,10 +324,6 @@
         >
           <slot name="open-indicator" />
         </span>
-
-        <!-- <slot name="spinner">
-          <div class="spinner" v-show="mutableLoading">Loading...</div>
-        </slot> -->
       </div>
     </div>
 
