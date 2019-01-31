@@ -28,39 +28,6 @@
     text-align: right;
   }
 
-  /* Open Indicator */
-  .v-select .open-indicator {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    pointer-events: all;
-    transition: all 150ms cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    transition-timing-function: cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    opacity: 1;
-    width: 12px; /* To account for extra width from rotating. */
-  }
-  .v-select .open-indicator:before {
-    border-color: rgba(60, 60, 60, .5);
-    border-style: solid;
-    border-width: 3px 3px 0 0;
-    content: '';
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-    vertical-align: text-top;
-    transform: rotate(133deg);
-    transition: all 150ms cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    transition-timing-function: cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    box-sizing: inherit;
-  }
-  /* Open Indicator States */
-  .v-select.open .open-indicator:before {
-    transform: rotate(315deg);
-  }
-  .v-select.loading .open-indicator {
-    opacity: 0;
-  }
-
   /* Dropdown Toggle */
   .v-select .dropdown-toggle {
     -webkit-appearance: none;
@@ -349,7 +316,7 @@
 
       </div>
       <div class="vs__actions">
-        <button
+        <!-- <button
           v-show="showClearButton"
           :disabled="disabled"
           @click="clearSelection"
@@ -358,13 +325,20 @@
           title="Clear selection"
         >
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> -->
 
-        <i v-if="!noDrop" ref="openIndicator" role="presentation" class="open-indicator"></i>
+        <span
+          v-if="!noDrop"
+          ref="openIndicator"
+          role="presentation"
+          :class="{'open-indicator': !$slots['open-indicator'] || $slots['open-indicator'] === ''}"
+        >
+          <slot name="open-indicator" />
+        </span>
 
-        <slot name="spinner">
+        <!-- <slot name="spinner">
           <div class="spinner" v-show="mutableLoading">Loading...</div>
-        </slot>
+        </slot> -->
       </div>
     </div>
 
